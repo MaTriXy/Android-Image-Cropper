@@ -1,8 +1,19 @@
 Android Image Cropper
 =======
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Image--Cropper-green.svg?style=true)](https://android-arsenal.com/details/1/3487)
-[ ![Download](https://api.bintray.com/packages/arthurhub/maven/Android-Image-Cropper/images/download.svg) ](https://bintray.com/arthurhub/maven/Android-Image-Cropper/_latestVersion)
 
+# :triangular_flag_on_post: The Project is NOT currently maintained :triangular_flag_on_post:
+
+## Please use **[CanHub's fork](https://github.com/CanHub/Android-Image-Cropper)!**
+
+### Thank everybody for using the library. It was very fun to create and a privilage to help you build awesome apps.
+### The same way I took an unmaintained initial implementation from [edmodo](https://github.com/edmodo/cropper), I'm happy to see [CanHub](https://github.com/CanHub/Android-Image-Cropper) taking it now.
+### Good luck and happy coding :octocat:
+
+
+----
+----
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Image--Cropper-green.svg?style=true)](https://android-arsenal.com/details/1/3487)
+[![Build Status](https://travis-ci.org/ArthurHub/Android-Image-Cropper.svg?branch=master)](https://travis-ci.org/ArthurHub/Android-Image-Cropper)
 
 **Powerful** (Zoom, Rotation, Multi-Source), **customizable** (Shape, Limits, Style), **optimized** (Async, Sampling, Matrix) and **simple** image cropping library for Android.
 
@@ -13,10 +24,12 @@ Android Image Cropper
 
 [See GitHub Wiki for more info.](https://github.com/ArthurHub/Android-Image-Cropper/wiki)
 
-Include the library
+1. Include the library
 
  ```
- compile 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
+ dependencies {
+     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+ }
  ```
 
 Add permissions to manifest
@@ -25,7 +38,11 @@ Add permissions to manifest
  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
  ```
+Add this line to your Proguard config file
 
+```
+-keep class androidx.appcompat.widget.** { *; }
+```
 ### Using Activity
 
 2. Add `CropImageActivity` into your AndroidManifest.xml
@@ -102,7 +119,7 @@ Add permissions to manifest
 - Set initial crop window size/location.
 - Request cropped image resize to specific size.
 - Bitmap memory optimization, OOM handling (should never occur)!
-- API Level 10.
+- API Level 14.
 - More..
  
 ## Customizations
@@ -120,40 +137,17 @@ For more information, see the [GitHub Wiki](https://github.com/ArthurHub/Android
  - [Adding auto-zoom feature to Android-Image-Cropper](https://theartofdev.com/2016/04/25/adding-auto-zoom-feature-to-android-image-cropper/)
 
 ## Change log
-*2.4.3*
+*2.8.0*
+- Fix crash on Android O (thx @juliooa)
+- Update to support library to AndroidX (thx @mradzinski)
+- Handle failure when selecting non image file (thx @uncledoc)
+- More translations (thx @jkwiecien, @david-serrano)
 
-- Adding option to omit camera intents on getPickImageChooserIntent (thx Hugo Rossi)
-- Portuguese Language localization (thx Hugo Rossi)
-- Removed saving bitmap into parcel in `onSaveInstanceState` to prevent `TransactionTooLargeException`
-  - By default nothing will happen and the view will be restored empty (if cropping image loaded using bitmap).
-  - Added config `SaveBitmapToInstanceState` to enable saving bitmap to temp file so it can be restored (default is false because of possible performance implications).
-  - Always prefer using URI to load image from cropping!
-- Fix restore state not restoring rotation.
-- Fix initial crop window may be in invalid position because reading previous image instance state.
-
-*2.4.2*
-
-- Fix instance state saved before any image loaded resulted in corrupted initial crop rectangle.
-- Fix corners of crop overlay offset for oval shape resulting in confusing UI (#256).
-- Fix support for negative rotation values for CropImageActivity.
-- Add `start` method that accepts `android.app.Fragment`, annotated with `@RequiresApi` 11
-
-*2.4.0*
-
-- Super simple crop activity quick start flow that handles URI and permissions (huge thanks to @adwiv)
-- Add image horizontal/vertical flipping during cropping (huge thanks to @tibbi).
-- Handle OOM error for cropping set bitmap object, previously only image set by URI handled OOM.
-- Allows for rotation degrees to be negative, fixes operator-precedence-related bug in flipAxes computation (thx Tim Cooke)
-- Added crop overlay released listener (thx Richard Yee)
-- Added originalUri and originalBitmap to CropResult object.
-- Fix `resetCropRect()` resetting image rotation to 0 instead of the original exif data.
-- Fix ignoring image rotation data in `setImageBitmap(Bitmap, ExifInterface )` method.
-- Removed deprecated listeners.
-
-*2.3.1*
-
-- Fix image picker for xiaomi and huawei phones (thx @nicolabeghin)
-- Fix crop window get corrupted on `CropImageView` resize.
+*2.7.0*
+- Update gradle wrapper to 4.4
+- Update support library to 27.1.1 and set is statically! (thx @androideveloper)
+- Fix NPE in activity creation by tools (thx @unverbraucht)
+- More translations (thx @gwharvey, @dlackty, @JairoGeek, @shaymargolis)
 
 See [full change log](https://github.com/ArthurHub/Android-Image-Cropper/wiki/Change-Log).
 
